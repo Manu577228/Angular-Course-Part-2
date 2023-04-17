@@ -1,0 +1,191 @@
+<p>{{ postArray }}</p>
+
+<ul>
+  <li>{{ postArray[0] }}</li>
+  <li>{{ postArray[1] }}</li>
+  <li>{{ postArray[2] }}</li>
+  <li>{{ postArray[3] }}</li>
+  <li>{{ postArray[4] }}</li>
+</ul>
+
+<!-- using ngFor to list array elements dynamically-->
+
+<p>Fetched using ngFor Directive</p>
+
+<ul>
+  <li *ngFor="let post of postArray">{{ post }}</li>
+</ul>
+
+<!-- using ngFor to fetch object Array, Adding data & deleting data in array using ngFor -->
+
+<p>Fetching Object Array</p>
+
+<button (click)="addNew()">Add new data</button>
+
+<!-- using ngFor to fetch object Array, Adding data & deleting data in array using ngFor & using ngIf Directive & ng-template-->
+
+<div *ngIf="objArray.length > 0; then postList; else noData"></div>
+
+<ng-template #postList>
+  <ul>
+    <li *ngFor="let post of objArray; let i = index">
+      {{ post.postTitle }}
+      <button (click)="onDelete(i)">Delete</button>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #noData>
+  <p>There is no data to fetch ...</p>
+</ng-template>
+
+<!-- using ng switch -->
+
+<div>
+  <button (click)="onClick('step 1')">step 1</button>
+  <button (click)="onClick('step 2')">step 2</button>
+  <button (click)="onClick('step 3')">step 3</button>
+</div>
+<br />
+
+<div [ngSwitch]="stepForm">
+  <div *ngSwitchCase="'step 1'">Step 1 Form</div>
+  <div *ngSwitchCase="'step 2'">Step 2 Form</div>
+  <div *ngSwitchCase="'step 3'">Step 3 Form</div>
+  <div *ngSwitchDefault>Something Else Bruh!</div>
+</div>
+
+<!-- using ng style binding -->
+
+<p>NgStyle Directive</p>
+
+<h1
+  [style.color]="isActive ? 'purple' : 'black'"
+  [style.textTransform]="isActive ? 'uppercase' : 'lowercase'"
+>
+  Learning Angular Course
+</h1>
+
+<!-- instead of above method we use ngStyle method -->
+
+<h1
+  [ngStyle]="{
+    color: isActive ? 'purple' : 'black',
+    textTransform: isActive ? 'upperCase' : 'lowercase'
+  }"
+>
+  NgStyle Directive
+</h1>
+
+<!-- using class bindind -->
+
+<h1 [class.main]="isAct" [class.text-weight]="isAct">Angular Udemy Course</h1>
+
+<!-- instead of above method we use ngClass method -->
+
+<h1
+  [ngClass]="{
+    main: isAct,
+    'text-weight': isAct
+  }"
+>
+  ngClass Directive
+</h1>
+
+<!-- Task -->
+
+<div class="form-area">
+  <h3>User Details</h3>
+  <input type="text" placeholder="Name" [(ngModel)]="name" />
+  <br /><br />
+
+  <input type="email" placeholder="Email" [(ngModel)]="email" />
+  <br /><br />
+
+  <textarea
+    cols="30"
+    rows="10"
+    placeholder="Address"
+    [(ngModel)]="address"
+  ></textarea>
+  <br /><br />
+
+  <button (click)="onClicked()">Save Data</button>
+</div>
+
+<div *ngIf="userArray.length > 0; else noData">
+  <div class="table-area">
+    <table width="600">
+      <thead>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Action</th>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of userArray; let index = index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.address }}</td>
+          <td><button (click)="onRemove(index)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #noData>
+  <h4>No Data to show</h4>
+</ng-template>
+
+<!-- usage of uppercase pipe & lowercase pipe -->
+
+<h1>{{ title | uppercase }}</h1>
+<!-- for lowercase give lowercase -->
+
+<!-- usage of number pipe or decimal pipe -->
+
+<h1>{{ count | number }}</h1>
+<h1>{{ dcValue | number : "1.2-2" }}</h1>
+
+<!-- usage of currency pipe -->
+
+<h1>{{ price | currency : "JPY" : true : "2.1-1" }}</h1>
+
+<!-- usage of date pipe -->
+
+<h1>{{ today | date : "shortDate" }}</h1>
+
+<!-- usage of Json Pipe -->
+
+<p>{{ postObj | json }}</p>
+
+<!-- usage of percent pipe -->
+
+<h3>{{ 5 | percent : "1.1-1" }}</h3>
+
+<!-- usage of slice Pipe -->
+
+<h3>{{ postArray | slice : 2 : 4 }}</h3>
+
+<!-- usage of Custom pipe -->
+
+<h3>{{ userDetails.city | append }}</h3>
+
+<!-- usage of custom pipe using angular cli (ng g pipe Pipes/appendCLI) -->
+
+<h3>{{ userDetails.city | appendCLI }}</h3>
+
+<!-- usage of custom pipes with Arguements -->
+
+<p>{{ dummyText | summary : 7 }}</p>
+
+<!-- usage of angular services -->
+<h3>post component</h3>
+<app-post></app-post>
+
+<h3>post-list component</h3>
+<app-post-list></app-post-list>

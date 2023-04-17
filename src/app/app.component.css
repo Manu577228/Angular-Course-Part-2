@@ -1,0 +1,22 @@
+.main {
+color:indianred;
+text-transform: uppercase;
+}
+
+.text-weight {
+font-weight: bold;
+}
+
+.form-area {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.table-area {
+    position: absolute;
+    left: 30%;
+}
+
+h4 {
+    text-align: center;
+}
